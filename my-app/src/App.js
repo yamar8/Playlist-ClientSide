@@ -1,10 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import PathRoot from "./Route";
 function App() {
   return (
     <div className="App">
-
+      <PathRoot />
     </div>
   );
 }
