@@ -1,9 +1,9 @@
 function Login() {
   return (
-    <>
-      <p>Login:</p>
-      <form>
+      <div className="login">
         <h1>welcome to hour site:</h1>
+      <form>
+      <h3>Login:</h3>
         <span>enter mail: </span>
         <input
           name="email"
@@ -16,16 +16,15 @@ function Login() {
         <span>enter password: </span>
         <input
           name="password"
-          type="number"
           placeholder="password"
           onChange={onabort}
         />
         <br />
         <br />
 
-        <button type="submit">submit</button>
+        <button id="submit" type="submit">submit</button>
       </form>
-    </>
+    </div>
   );
 }
 

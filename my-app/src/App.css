@@ -35,9 +35,22 @@
   to {
     transform: rotate(360deg);
   }
-}.link{
+}.links{
   display: flex;
-  /* justify-content: space-around;
-  justify-content: space-between; */
   justify-content: space-evenly;
+  background-color: rgba(0, 139, 139, 0.527);
+  border-radius: 5px;
+}link{
+  color: 
+}body{
+  background-color: rgba(0, 139, 139, 0.263);
+}.login{
+  margin: 85px 300px 10px 300px;
+  padding: 10px 10px 30px 10px;
+  background-color: rgba(0, 139, 139, 0.527);
+  border-radius: 10px;
+}#submit{
+  border-radius: 7px;
+  background-color:darkgray;
+  cursor: pointer;
 }
