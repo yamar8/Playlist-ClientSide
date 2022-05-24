@@ -35,4 +35,9 @@
   to {
     transform: rotate(360deg);
   }
+}.link{
+  display: flex;
+  /* justify-content: space-around;
+  justify-content: space-between; */
+  justify-content: space-evenly;
 }
