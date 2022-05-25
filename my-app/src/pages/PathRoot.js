@@ -1,6 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from './Login';
-import SearchSong from '/SearchSong';
+import SearchSong from './SearchSong';
 import SongList from './SongList';
 
 export default function PathRoot() {
