@@ -3,8 +3,11 @@ import Login from "./Login";
 import SearchSong from "./SearchSong";
 import SongList from "./SongList";
 
-export default function PathRoot() {
-  return (
+
+
+function PathRoot() {
+  
+return (
     <nav>
       <Routes>
         <Route path="/" element={<Login />}></Route>
@@ -14,3 +17,5 @@ export default function PathRoot() {
     </nav>
   );
 }
+
+export default PathRoot;

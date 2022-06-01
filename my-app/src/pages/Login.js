@@ -1,13 +1,18 @@
 import {useState} from 'react';
+import {NameContext} from '../App';
+import {useContext} from 'react';
+
 
 function Login() {
-  
-  const [formData,setFormData] = useState({});
 
+  const userNameState = useContext(NameContext);
+  const setUserName = userNameState[1];
+
+
+  const [formData,setFormData] = useState({});
   const onChangeHandler = (e)=>{
     let name = e.target.name; // taking the name of each input.
     let value = e.target.value; // taking the value of each input.
-
     setFormData((currentData)=>{
       return{
         ...currentData, // extract the key:value from the object
@@ -31,12 +36,14 @@ const isValid = ()=>{
     // convert [["a",1],["b,2"]] to {a:1,b:2}
     //the FormData() method take an argument of form element and take all the fileds inside it and store them as key value. according to the name propery and the value.
     const formData = Object.fromEntries(new FormData(e.target));
+    setUserName(formData);
     console.log(formData);
   };
   
   
   
   return (
+    
       <div className="login">
         <h1>welcome to our site:</h1>
       <form onSubmit={(onSubmit)}>
@@ -44,7 +51,7 @@ const isValid = ()=>{
         <span>enter email: </span>
         <input
           name="email"
-          type="email"
+          type="text"
           placeholder="email"
           onChange={onChangeHandler}
         />
