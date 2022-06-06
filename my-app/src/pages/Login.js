@@ -22,12 +22,12 @@ function Login() {
   }
   
 const isValid = ()=>{
-  const {email,password} = formData; 
+  const {userName,password} = formData; 
   //similar to:
   // const fullname = formData.email;
   // const description = formData.password;
   /*place to input validation*/
-  return email&&password;
+  return userName&&password;
 }
   // this function purpose is to send the form data to DB etc..
   const onSubmit = (e) => {
@@ -35,9 +35,9 @@ const isValid = ()=>{
     //The Object.fromEntries() method transforms a list of key-value pairs into an object. 
     // convert [["a",1],["b,2"]] to {a:1,b:2}
     //the FormData() method take an argument of form element and take all the fileds inside it and store them as key value. according to the name propery and the value.
-    const formData = Object.fromEntries(new FormData(e.target));
-    setUserName(formData);
-    console.log(formData);
+    const formDataObj = Object.fromEntries(new FormData(e.target));
+    setUserName(formDataObj);
+    console.log(formDataObj);
   };
   
   
@@ -45,22 +45,22 @@ const isValid = ()=>{
   return (
     
       <div className="login">
-        <h1>welcome to our site:</h1>
+        <h1>Welcome to your Playlist:</h1>
       <form onSubmit={(onSubmit)}>
       <h3>Login:</h3>
-        <span>enter email: </span>
+        <span>Enter User Name: </span>
         <input
-          name="email"
+          name="userName"
           type="text"
-          placeholder="email"
+          placeholder="User Name"
           onChange={onChangeHandler}
         />
         <br />
         <br />
-        <span>enter password: </span>
+        <span>Enter Password: </span>
         <input
           name="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={onChangeHandler}
         />
         <br />

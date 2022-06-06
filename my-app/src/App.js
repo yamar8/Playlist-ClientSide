@@ -4,7 +4,7 @@ import "./App.css";
 import Header from "./pages/Header";
 import {useState, createContext} from 'react';
 
-export const NameContext = createContext("user"); 
+export const NameContext = createContext(); 
 
 function App() {
   const userNameState = useState("");
