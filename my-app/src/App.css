@@ -44,7 +44,7 @@
 }
 
 body{
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.294);
 }
 .login{
   margin: 85px 300px 10px 300px;
@@ -60,6 +60,11 @@ body{
 
 .songlist{
   background-color: rgba(0, 0, 255, 0.667);
-color: white;
+color: rgb(255, 0, 0);
+}
+
+.songImage{
+  height: 100;
+  width: 100;
 
 }
