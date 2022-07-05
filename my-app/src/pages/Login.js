@@ -1,12 +1,27 @@
 import {useState} from 'react';
 import {NameContext} from '../App';
 import {useContext} from 'react';
-
+import {useEffect} from 'react';
 
 function Login() {
 
-  const userNameState = useContext(NameContext);
-  const setUserName = userNameState[1];
+  const [userName,setUserName] = useContext(NameContext);
+  // const [setUserName,userName] = userNameState;
+
+  useEffect(() => {
+    fetch('http://localhost:3001/api/users/login',
+    {
+      method: "POST",
+      body: JSON.stringify({name: userName.userName, password: userName.password}),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+        .then(response => response.json())
+        .then(response => {
+             console.log(response)})
+        .catch(err => console.error(err));
+},[userName])
 
 
   const [formData,setFormData] = useState({});
