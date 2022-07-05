@@ -3,4 +3,10 @@
     width: 30%;
     flex-direction: column;
     justify-content: right;
+    border-style:solid;
+}
+
+.searchSong{
+    display: flex;
+
 }

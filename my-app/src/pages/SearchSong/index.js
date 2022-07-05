@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./SearchSong.css";
+import AddSong from "../../components/AddSong";
+import "./style.css";
+import {playList1} from '../../fakeData';
 
 export default function SearchSong() {
   const [search, setSearch] = useState();
 
+  const [playlist, setPlaylist] = useState(playList1);
+
   return (
     <div>
-      
+
       <SearchBar setSearch={setSearch} />
-     
-      <div className="searchResult">
-        <SearchResult search={search} />
-      </div>
- 
+    <div className="searchSong">
+      <SearchResult setPlaylist={setPlaylist} search={search} />
+      <AddSong playlist = {playlist}/>
+    </div>
     </div>
   );
 }
@@ -21,7 +24,6 @@ export default function SearchSong() {
 function SearchBar({ setSearch }) {
   const [inputValue, setInputValue] = useState("");
 
-  
   const onClickHandler = () => {
     setSearch(inputValue);
   };
@@ -34,9 +36,16 @@ function SearchBar({ setSearch }) {
   );
 }
 
-function SearchResult({ search }) {
+function SearchResult({ search,setPlaylist }) {
   const [result, setResult] = useState();
-  
+  setPlaylist(playList1);
+  function addToPlaylist(v) {
+    playList1.push({
+      name: v.title,
+      songs: {  }
+  })
+  }
+
   const options = {
     method: "GET",
     headers: {
@@ -44,14 +53,14 @@ function SearchResult({ search }) {
       "X-RapidAPI-Key": "e3ac5866b0msh2e100b947fe0dcdp190da0jsn0c520883eb43",
     },
   };
-  
+
   useEffect(() => {
     fetch(
       "https://simple-youtube-search.p.rapidapi.com/search?query=" +
-      search +
+        search +
         "&safesearch=false",
       options
-      )
+    )
       .then((response) => response.json())
       .then((response) => {
         setResult(response.results);
@@ -59,15 +68,13 @@ function SearchResult({ search }) {
       })
       .catch((err) => console.error(err));
   }, [search]);
-  
+
   if (!result) return "Loading..";
   if (!search) return "No result.";
-  
-  function addToPlaylist(v){
-      console.log(v);
-  }
+
+
   return (
-    <div>
+    <div className="searchResult">
       {result.map((v) => {
         return (
           <div>
@@ -82,7 +89,7 @@ function SearchResult({ search }) {
               height="100"
               className="ImageSong"
             />
-            <button onClick={()=> addToPlaylist(v)}>add to playlist</button>
+            <button onClick={() => addToPlaylist(v)}>add to playlist</button>
           </div>
         );
       })}

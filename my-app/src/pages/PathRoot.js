@@ -1,10 +1,10 @@
 import { Navigate,Route, Routes } from "react-router-dom";
 import Login from "./Login";
-import SearchSong from "./SearchSong/SearchSong";
+import SearchSong from "./SearchSong"
 import SongList from "./SongList";
 import {useContext} from 'react';
 import {NameContext} from '../App.js'
-import Song from '../components/Song/Song';
+import Song from '../components/Song';
   
 
 
