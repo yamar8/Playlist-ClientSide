@@ -21,6 +21,7 @@ export default function SearchSong() {
 function SearchBar({ setSearch }) {
   const [inputValue, setInputValue] = useState("");
 
+  
   const onClickHandler = () => {
     setSearch(inputValue);
   };
@@ -35,7 +36,7 @@ function SearchBar({ setSearch }) {
 
 function SearchResult({ search }) {
   const [result, setResult] = useState();
-
+  
   const options = {
     method: "GET",
     headers: {
@@ -43,14 +44,14 @@ function SearchResult({ search }) {
       "X-RapidAPI-Key": "e3ac5866b0msh2e100b947fe0dcdp190da0jsn0c520883eb43",
     },
   };
-
+  
   useEffect(() => {
     fetch(
       "https://simple-youtube-search.p.rapidapi.com/search?query=" +
-        search +
+      search +
         "&safesearch=false",
       options
-    )
+      )
       .then((response) => response.json())
       .then((response) => {
         setResult(response.results);
@@ -58,10 +59,13 @@ function SearchResult({ search }) {
       })
       .catch((err) => console.error(err));
   }, [search]);
-
+  
   if (!result) return "Loading..";
   if (!search) return "No result.";
-
+  
+  function addToPlaylist(v){
+      console.log(v);
+  }
   return (
     <div>
       {result.map((v) => {
@@ -78,6 +82,7 @@ function SearchResult({ search }) {
               height="100"
               className="ImageSong"
             />
+            <button onClick={()=> addToPlaylist(v)}>add to playlist</button>
           </div>
         );
       })}
