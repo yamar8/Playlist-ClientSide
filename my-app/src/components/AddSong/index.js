@@ -1,16 +1,14 @@
 import {useState} from 'react';
-// import {playList1} from '../../fakeData';
 import './AddSong.css';
 
 
 function AddSong(props){
-    // const [playlist, setPlaylist] = useState(playList1);
-
-    
+   
+    const {playlist} = props;
     
     return (
     <div className = "AddSong">
-    {props.playlist.map((v) =>  { return <div>{v.name}</div>})}
+    {playlist.map((v) =>  { return <div>{v.name}</div>})}
     </div>)
 }
 

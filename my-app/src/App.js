@@ -1,18 +1,22 @@
 import "./App.css";
-import PathRoot from "./pages/PathRoot";
-import Header from "./pages/Header";
+import Login from "./pages/Login";
 import {useState, createContext} from 'react';
+import Layout from "./components/Layout";
 
 export const NameContext = createContext(); 
 
 function App() {
   const userNameState = useState("");
-  
+  const [isLogged, setIsLogged] = useState(localStorage.atLogin)
+
+
   return (
     <div className="App">
     <NameContext.Provider value = {userNameState}>
-      <Header />
-      <PathRoot />
+    {isLogged ?
+      <Layout setIsLogged = {setIsLogged}/> :
+      <Login setIsLogged = {setIsLogged}/> 
+    }
     </NameContext.Provider>
     </div>
   );

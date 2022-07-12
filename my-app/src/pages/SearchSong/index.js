@@ -2,21 +2,19 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddSong from "../../components/AddSong";
 import "./style.css";
-import {playList1} from '../../fakeData';
+import { playList1 } from "../../fakeData";
 
 export default function SearchSong() {
   const [search, setSearch] = useState();
 
   const [playlist, setPlaylist] = useState(playList1);
-
   return (
     <div>
-
       <SearchBar setSearch={setSearch} />
-    <div className="searchSong">
-      <SearchResult setPlaylist={setPlaylist} search={search} />
-      <AddSong playlist = {playlist}/>
-    </div>
+      <div className="searchSong">
+        <SearchResult setPlaylist={setPlaylist} search={search} />
+        <AddSong playlist={playlist} />
+      </div>
     </div>
   );
 }
@@ -36,14 +34,42 @@ function SearchBar({ setSearch }) {
   );
 }
 
-function SearchResult({ search,setPlaylist }) {
+function SearchResult({ search, setPlaylist }) {
   const [result, setResult] = useState();
-  setPlaylist(playList1);
+
+const submitHandler = (e)=> {
+  e.preventDefault();
+  const select = e.target.cars;
+  console.log(select.options[select.selectedIndex].value);
+}
+
   function addToPlaylist(v) {
-    playList1.push({
-      name: v.title,
-      songs: {  }
-  })
+    setPlaylist((current) => {
+      console.log(current);
+      return [
+        ...current,
+        {
+          songs: [v.title],
+        },
+      ];
+    });
+  }
+
+  function addToExistPlaylist(v) {
+    setPlaylist((current) => {
+      console.log(current);
+      current.map((s) => {
+        if (v.title === s.name) {
+        }
+      });
+
+      return [
+        ...current,
+        {
+          songs: [v.title],
+        },
+      ];
+    });
   }
 
   const options = {
@@ -72,7 +98,6 @@ function SearchResult({ search,setPlaylist }) {
   if (!result) return "Loading..";
   if (!search) return "No result.";
 
-
   return (
     <div className="searchResult">
       {result.map((v) => {
@@ -89,7 +114,26 @@ function SearchResult({ search,setPlaylist }) {
               height="100"
               className="ImageSong"
             />
-            <button onClick={() => addToPlaylist(v)}>add to playlist</button>
+
+            <form onSubmit={(e)=>submitHandler(e)}>
+
+              <select name="cars" id="cars">
+                <option name="vol" value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
+              
+              <input type="submit" value="Submit" />
+            </form>
+            <button
+              onClick={() => {
+                addToPlaylist(v);
+                addToExistPlaylist(v);
+              }}
+            >
+              add to playlist
+            </button>
           </div>
         );
       })}

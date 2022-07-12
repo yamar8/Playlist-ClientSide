@@ -2,27 +2,13 @@ import {useState} from 'react';
 import {NameContext} from '../App';
 import {useContext} from 'react';
 import {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom'
 
-function Login() {
+function Login({setIsLogged}) {
 
   const [userName,setUserName] = useContext(NameContext);
-  // const [setUserName,userName] = userNameState;
-
-  useEffect(() => {
-    fetch('http://localhost:3001/api/users/login',
-    {
-      method: "POST",
-      body: JSON.stringify({name: userName.userName, password: userName.password}),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-        .then(response => response.json())
-        .then(response => {
-             console.log(response)})
-        .catch(err => console.error(err));
-},[userName])
-
+  
+  const navigate = useNavigate();
 
   const [formData,setFormData] = useState({});
   const onChangeHandler = (e)=>{
@@ -45,14 +31,31 @@ const isValid = ()=>{
   return userName&&password;
 }
   // this function purpose is to send the form data to DB etc..
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
+   
     e.preventDefault();
-    //The Object.fromEntries() method transforms a list of key-value pairs into an object. 
-    // convert [["a",1],["b,2"]] to {a:1,b:2}
-    //the FormData() method take an argument of form element and take all the fileds inside it and store them as key value. according to the name propery and the value.
     const formDataObj = Object.fromEntries(new FormData(e.target));
     setUserName(formDataObj);
     console.log(formDataObj);
+
+    try{
+       const response = await fetch('http://localhost:3002/api/users/login',
+      {
+       method: "POST",
+       body: JSON.stringify({email: userName.userName, password: userName.password}),
+       headers: {'Content-Type': 'application/json'}
+      });
+      if(!response.ok){
+        throw new Error(`HTTP error! status: ${response.statusText}`);
+      }
+     const data = await response.json();
+     localStorage.atLogin = data.token;
+     setIsLogged(localStorage.atLogin);
+     navigate('/searchSong');
+   }catch(e){
+     alert(e);
+   }
+
   };
   
   

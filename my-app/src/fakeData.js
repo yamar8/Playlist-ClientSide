@@ -1,24 +1,21 @@
 const playList1 = [
-{
+  {
     name: "mySong",
-    songs: {  }
-},
-{
+    songs: [],
+  },
+  {
     name: "to the ride",
-    songs: {  }
-},
-{
+    songs: [],
+  },
+  {
     name: "for sleeping",
-    songs: {  }
-},
-]
+    songs: [],
+  },
+];
 
+const song1 = {
+  name: "Harel Moyal",
+};
 
-const song1 ={
-    name: "Harel Moyal",
-    
-}
+export { playList1, song1 };
 
-
-
-export {playList1, song1};
