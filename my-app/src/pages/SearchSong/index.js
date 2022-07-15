@@ -6,8 +6,8 @@ import { playList1 } from "../../fakeData";
 
 export default function SearchSong() {
   const [search, setSearch] = useState();
-
   const [playlist, setPlaylist] = useState(playList1);
+  
   return (
     <div>
       <SearchBar setSearch={setSearch} />
@@ -43,33 +43,24 @@ const submitHandler = (e)=> {
   console.log(select.options[select.selectedIndex].value);
 }
 
-  function addToPlaylist(v) {
-    setPlaylist((current) => {
-      console.log(current);
-      return [
-        ...current,
-        {
-          songs: [v.title],
-        },
-      ];
-    });
+  async function addToPlaylist(v) {
+
+    const title = JSON.stringify({name: v.title});
+    const URL = 'http://localhost:3002/api/songs/new';
+    const INIT = {method: 'POST',body:title ,headers: {'Content-Type':'application/json'}}
+    // const INIT = {method: 'POST',body:{"name":"hi"},headers:{Authorization: 'bearer: ' + localStorage.atLogin}}
+
+    const response = await fetch(URL,INIT);
+    if(!response.ok){
+      throw "";
+    }
+    const data = await response.json();
+    console.log(data);
+    setPlaylist();
   }
 
   function addToExistPlaylist(v) {
-    setPlaylist((current) => {
-      console.log(current);
-      current.map((s) => {
-        if (v.title === s.name) {
-        }
-      });
 
-      return [
-        ...current,
-        {
-          songs: [v.title],
-        },
-      ];
-    });
   }
 
   const options = {

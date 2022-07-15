@@ -23,26 +23,23 @@ function Login({setIsLogged}) {
   }
   
 const isValid = ()=>{
-  const {userName,password} = formData; 
+  const {email,password} = formData; 
   //similar to:
   // const fullname = formData.email;
   // const description = formData.password;
   /*place to input validation*/
-  return userName&&password;
+  return email&&password;
 }
   // this function purpose is to send the form data to DB etc..
   const onSubmit = async (e) => {
-   
     e.preventDefault();
-    const formDataObj = Object.fromEntries(new FormData(e.target));
-    setUserName(formDataObj);
-    console.log(formDataObj);
 
+    const reqData = JSON.stringify(Object.fromEntries(new FormData(e.target)));
     try{
        const response = await fetch('http://localhost:3002/api/users/login',
       {
        method: "POST",
-       body: JSON.stringify({email: userName.userName, password: userName.password}),
+       body: reqData,
        headers: {'Content-Type': 'application/json'}
       });
       if(!response.ok){
@@ -51,7 +48,7 @@ const isValid = ()=>{
      const data = await response.json();
      localStorage.atLogin = data.token;
      setIsLogged(localStorage.atLogin);
-     navigate('/searchSong');
+    //  navigate('/searchSong');
    }catch(e){
      alert(e);
    }
@@ -68,9 +65,9 @@ const isValid = ()=>{
       <h3>Login:</h3>
         <span>Enter User Name: </span>
         <input
-          name="userName"
+          name="email"
           type="text"
-          placeholder="User Name"
+          placeholder="Email"
           onChange={onChangeHandler}
         />
         <br />

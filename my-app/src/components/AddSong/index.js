@@ -8,7 +8,7 @@ function AddSong(props){
     
     return (
     <div className = "AddSong">
-    {playlist.map((v) =>  { return <div>{v.name}</div>})}
+    {/* {playlist.map((v) =>  { return <div>{v.name}</div>})} */}
     </div>)
 }
 
