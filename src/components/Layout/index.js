@@ -1,6 +1,7 @@
-import Main from "../pages/Main";
-import Header from "../pages/Header";
+
+import Header from "../../pages/Header";
 import { useEffect,useState } from "react";
+import Main from "../../pages/Main";
 
 function Layout({setIsLogged}){
 
@@ -33,7 +34,7 @@ function Layout({setIsLogged}){
 
     return <div>  
     <Header userName={user.firstName} />
-      <Main />
+      <Main/>
       </div>
 }
 

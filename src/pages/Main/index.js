@@ -1,9 +1,9 @@
 import { Navigate,Route, Routes } from "react-router-dom";
-import SearchSong from "./SearchSong"
-import SongList from "./SongList";
+import SearchSong from "../../pages/SearchSong"
+import SongList from "../SongList";
 import {useContext} from 'react';
-import {NameContext} from '../App.js'
-import Song from '../components/Song';
+import {NameContext} from '../../App.js'
+import Song from '../../components/Song';
   
 
 

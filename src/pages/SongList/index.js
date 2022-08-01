@@ -1,4 +1,4 @@
-import {NameContext} from '../App';
+import {NameContext} from '../../App'
 import {useContext} from 'react';
 
 function SongList(){

@@ -10,25 +10,28 @@ align-items: center;
 justify-content: center;
 background-color: darkblue;
 border-radius: 7px;
-height: 350px;
-width: 350px;
 }
 .login-inner-box {
   display: flex;
-  flex-direction: column;
-  /* justify-content: space-between; */
+  flex-direction: column;  
+  width: 90%;
+  height: 90%;
 }
-.login-welcome-title{
+.login-header{
 
+}
+.login-footer{
+  display: flex;
+  justify-content: center;
 }
 .login-form{
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
   width: 150px;
 }
 #submit {
   border-radius: 7px;
-  background-color: rgb(169, 169, 169);
+  background-color: rgb(255, 255, 255);
   cursor: pointer;
 }

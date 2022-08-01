@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { NameContext } from "../App";
+import { NameContext } from "../../App"
 import { useContext } from "react";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./style.css";
 
 function Login({ setIsLogged }) {
   const [userName, setUserName] = useContext(NameContext);
@@ -57,9 +56,10 @@ function Login({ setIsLogged }) {
     <div className="login-container">
       <div className="login-box">
         <div className="login-inner-box">
-          <div className = "login-welcome-title">
+          <div className = "login-header">
           <h1>Welcome to your Playlist:</h1>
           </div>
+          <div className = 'login-footer'>
           <form className="login-form" onSubmit={onSubmit}>
             <h3>Login:</h3>
             <label>User Name: </label>
@@ -84,6 +84,7 @@ function Login({ setIsLogged }) {
               submit
             </button>
           </form>
+          </div>
           {/* JSON.stringify converts a JavaScript object or value to a JSON string. (will remove it from the code)*/}
           {/* {JSON.stringify(formData)} */}
         </div>
